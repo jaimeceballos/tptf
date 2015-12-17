@@ -1,0 +1,12 @@
+#nav-principal{
+  position:fixed;
+  top: 0px;
+  height: 45px;
+  width: 100%;
+  background-color: black;
+  margin-left: 0px;
+  padding-top: 10px;
+}
+#container-principal{
+  margin-top: 45px
+}
