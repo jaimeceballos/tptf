@@ -9,7 +9,9 @@
 		<div class='row'>
 
 			{% if profileForm.avatar %}
-				<img src="{{ profileForm.avatar }}">
+				<img src="../../media/{{ profile.avatar }}" width='200px' height='200px' style='border-radius:100px;'>
+			{% else %}
+				{{ profileForm.avatar }}
 			{% endif %}
 		</div>
 	</div>

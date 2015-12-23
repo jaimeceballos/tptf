@@ -96,7 +96,8 @@ def editar_perfil(request):
 		'userForm' : userForm,
 		'profileForm' :profileForm,
 		'usuario' : usuario,
-	}
+		'profile' : profile,
+ 	}
 	if request.method == 'POST':
 		userForm = UserForm(request.POST)
 		profileForm = ProfileForm(request.POST, request.FILES)

@@ -13,6 +13,7 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from apps.usuarios import urls as usuarios
@@ -21,4 +22,5 @@ urlpatterns = [
     #url(r'^admin/', include(admin.site.urls)),
     url(r'^usuarios/',include(usuarios)),
     url(r'^$',home,name='home'),
+    url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT}),
 ]
