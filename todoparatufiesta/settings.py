@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'todoparatufiesta',
         'USER': 'root',
-        'PASSWORD':'123456',
+        'PASSWORD':'ariadna05042007',
         'PORT': '3306',
     }
 }
@@ -112,7 +112,7 @@ STATICFILES_DIRS = (
   os.path.join(BASE_DIR,'static'),
 )
 
-MEDIA_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__),'media/'))
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 LOGIN_REDIRECT_URL = 'home'
 
