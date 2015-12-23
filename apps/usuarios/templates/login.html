@@ -11,36 +11,34 @@
 	<style type="text/css">
 		input[type='text'],input[type='password'],input[type='email']{
 			width:250px;
-			height: 2em;
+			height: 40px;
 			text-align: center;
 
 		}
 		input[type='text']{
-			border-radius: 10px 10px 0px 0px;/* bordes esquinas superiores */
-			border-top:1px solid #00A0D1;
-			border-left:1px solid #00A0D1;
-			border-right:1px solid #00A0D1;
-			border-bottom: none;
+			border-radius: 3px;/* bordes esquinas superiores */
+			border:1px solid #00A0D1;
+			
 		}
 		input[type='password']{
-			border-radius: 0px 0px 10px 10px;/* bordes esquinas inferiores */
+			border-radius: 3px;/* bordes esquinas inferiores */
 			border:1px solid #00A0D1;
 		}
 		input[type='email']{
-			border-radius: 10px 10px 10px 10px;/* bordes esquinas inferiores */
+			border-radius: 3px;/* bordes esquinas inferiores */
 			border:1px solid #00A0D1;
 		}
 		.login{
 			border: 1px solid #78AFAA;
 			position:absolute;
-			top:40%;
+			top:27%;
 			left:15%;
-			padding: 1em 5em 5em 5em;
+			padding: 1em 5em 5em 3em;
 			border-radius: 10px;
 			background: #F1F1F1; /* For browsers that do not support gradients */
 			box-shadow: 5px 5px 40px #F1F;
 			width: 260px;
-			height: 220px;
+			height: 260px;
 		    z-index: -1;
 		}
 		.registro{
@@ -137,6 +135,7 @@
 		 	background-color: white;
 
 		 }
+		 .required{outline: 1px solid red;}
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function ($) {
@@ -160,14 +159,14 @@
 			{% endif %}
 			<form method='POST' action={% url 'login' %}>{% csrf_token %}
 				<div >
-					<div>
+					<div class="row">
 						{{ form.username }}
 						<script type="text/javascript">
 							document.getElementById("id_username").placeholder = "Usuario";
 							
 						</script>
 					</div>
-					<div>
+					<div class="row">
 						{{ form.password }}
 						<script type="text/javascript">
 							document.getElementById("id_password").placeholder = "Contraseña";
@@ -175,7 +174,10 @@
 						</script>
 					</div>
 				</div>	
-				<button type='submit'>Ingresar</button>
+				<div class="row">
+					<button type='submit'>Ingresar</button>
+				</div>
+				
 			</form>
 			{% endblock login-body %}
 		</div>

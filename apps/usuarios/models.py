@@ -10,6 +10,7 @@ class UserProfile(models.Model):
 	anio_nac = models.IntegerField(null=True)
 	activation_key = models.CharField(max_length=40, blank=True)
 	key_expires = models.DateTimeField(default=datetime.today())
+	avatar 	= models.ImageField(upload_to='apps/usuarios/avatar/',null=True,blank=True)
 
 	class Meta:
 		db_table = 'UserProfile'

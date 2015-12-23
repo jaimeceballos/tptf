@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response,get_object_or_404  
 from django.template import Context, Template, RequestContext
 from .models import *
@@ -13,7 +13,8 @@ import hashlib,random
 from django.utils import timezone
 from datetime import datetime,time,timedelta
 from django.core.mail import EmailMultiAlternatives
-
+from django.contrib.auth.models import User
+from django.forms import inlineformset_factory
 
 # Create your views here.
 
@@ -84,3 +85,32 @@ def logout(request):
     auth.logout(request)
     
     return HttpResponseRedirect(reverse('home'))
+
+@login_required(login_url='login')
+def editar_perfil(request):
+	usuario = request.user
+	profile = usuario.profile
+	userForm = UserForm(instance=usuario)
+	profileForm = ProfileForm(instance=profile)
+	values = {
+		'userForm' : userForm,
+		'profileForm' :profileForm,
+		'usuario' : usuario,
+	}
+	if request.method == 'POST':
+		userForm = UserForm(request.POST)
+		profileForm = ProfileForm(request.POST, request.FILES)
+		print userForm.errors
+		print request.FILES['avatar']
+		if userForm.is_valid() or profileForm.is_valid():
+			usuario.first_name = userForm.data['first_name']
+			usuario.last_name = userForm.data['last_name']
+			usuario.email = userForm.data['email']
+			profile.dia_nac = profileForm.data['dia_nac']
+			profile.mes_nac = profileForm.data['mes_nac']
+			profile.anio_nac = profileForm.data['anio_nac']
+			profile.avatar = request.FILES['avatar']
+			print profile.avatar
+			usuario.save()
+			profile.save()
+	return render_to_response('editar_perfil.html',values,context_instance=RequestContext(request))
